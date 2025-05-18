@@ -25,7 +25,7 @@ body {
 
 .square {
   /* border: 1px solid black; */
-  border: 0px;
+  border: none;
   border-radius: 10px;
   color: violet;
   display: flex;
@@ -34,4 +34,17 @@ body {
   font-size: 32px;
   font-weight: 700;
   cursor: pointer;
+}
+
+.status {
+  width: max-content;
+  margin: auto;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  background-color: black;
+  color: white;
+  font-size: 24px;
+  letter-spacing: 1px;
 }
