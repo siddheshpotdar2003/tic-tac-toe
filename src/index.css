@@ -28,6 +28,7 @@ body {
   border: none;
   border-radius: 10px;
   color: violet;
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.75);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,6 +46,7 @@ body {
   padding: 12px;
   background-color: black;
   color: white;
+  box-shadow: 4px 4px 12px 0px rgba(0, 0, 0, 0.75);
   font-size: 24px;
   letter-spacing: 1px;
 }
