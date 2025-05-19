@@ -2,10 +2,10 @@ import { useState } from "react";
 import Board from "./components/Board";
 
 const App = () => {
-  const [isXNext, setIsXNext] = useState(true);
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
   const currentSquares = history[currentMove];
+  const isXNext = currentMove % 2 === 0;
 
   console.log("current move: ", currentMove);
   console.log("history: ", history);
@@ -15,7 +15,6 @@ const App = () => {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
-    setIsXNext(!isXNext);
   };
 
   const moves = history.map((square, move) => {
@@ -36,7 +35,6 @@ const App = () => {
 
   const jumpTo = (move) => {
     setCurrentMove(move);
-    setIsXNext(move % 2 === 0);
   };
 
   return (
