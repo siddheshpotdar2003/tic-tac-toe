@@ -16,6 +16,52 @@ body {
   );
 }
 
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+}
+
+.game-info {
+  background-color: black;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 24px;
+}
+
+.game-info > h3 {
+  color: white;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.game-info > ul {
+  list-style-type: none;
+  gap: 8px;
+}
+
+.game-info > ul > li + li {
+  margin-top: 8px;
+}
+
+.game-info-button {
+  border: none;
+  border-radius: 8px;
+  min-width: 172px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding: 8px 12px;
+  cursor: pointer;
+  background-color: rgb(121, 48, 239);
+  color: white;
+}
+
 .board {
   display: grid;
   grid-template-columns: repeat(3, 100px);

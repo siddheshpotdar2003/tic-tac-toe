@@ -2,53 +2,38 @@ import { useState } from "react";
 import Board from "./components/Board";
 
 const App = () => {
-  const [squares, setSquares] = useState(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const currentSquares = history[history.length - 1];
 
-  const checkWinner = () => {
-    const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i];
-      if (
-        squares[a] &&
-        squares[a] === squares[b] &&
-        squares[b] === squares[c]
-      ) {
-        return squares[a];
-      }
-    }
-    return null;
-  };
-
-  const handleClick = (i) => {
-    if (squares[i] || checkWinner()) return;
-    const nextSquares = squares.slice();
-    isXNext ? (nextSquares[i] = "X") : (nextSquares[i] = "O");
-    setSquares(nextSquares);
+  const handlePlay = (nextSquares) => {
+    setHistory([...history, nextSquares]);
     setIsXNext(!isXNext);
   };
 
-  const winner = checkWinner();
-  let status;
-  if (winner) {
-    status = "💥Winner: " + winner + " 🎉";
-  } else {
-    status = "Next player: " + (isXNext ? "X" : "O");
-  }
+  const moves = history.map((square, move) => {
+    let description;
+    if (move > 0) {
+      description = "Go to move #" + move;
+    } else {
+      description = "Go to game start";
+    }
+    return (
+      <li key={move}>
+        <button className="game-info-button">{description}</button>
+      </li>
+    );
+  });
 
   return (
-    <div>
-      <div className="status">{status}</div>
-      <Board squares={squares} handleClick={handleClick} />
+    <div className="app">
+      <div className="game-board">
+        <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} />
+      </div>
+      <div className="game-info">
+        <h3>Game Info</h3>
+        <ul>{moves}</ul>
+      </div>
     </div>
   );
 };
