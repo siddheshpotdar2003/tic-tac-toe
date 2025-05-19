@@ -10,9 +10,13 @@ const Board = ({ isXNext, squares, onPlay }) => {
   };
 
   const winner = checkWinner(squares);
+  const isDraw = !winner && squares.every((square) => square !== null);
+
   let status;
   if (winner) {
     status = "💥Winner: " + winner + " 🎉";
+  } else if (isDraw) {
+    status = "Draw ❌";
   } else {
     status = "Next player: " + (isXNext ? "X" : "O");
   }

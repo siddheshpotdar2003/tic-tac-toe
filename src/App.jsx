@@ -24,7 +24,7 @@ const App = () => {
     } else {
       description = "Go to game start";
     }
-    console.log(move, currentMove);
+
     return (
       <li key={move}>
         <button
