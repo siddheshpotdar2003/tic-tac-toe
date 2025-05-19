@@ -4,10 +4,17 @@ import Board from "./components/Board";
 const App = () => {
   const [isXNext, setIsXNext] = useState(true);
   const [history, setHistory] = useState([Array(9).fill(null)]);
-  const currentSquares = history[history.length - 1];
+  const [currentMove, setCurrentMove] = useState(0);
+  const currentSquares = history[currentMove];
+
+  console.log("current move: ", currentMove);
+  console.log("history: ", history);
+  console.log("current squaers: ", currentSquares);
 
   const handlePlay = (nextSquares) => {
-    setHistory([...history, nextSquares]);
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
     setIsXNext(!isXNext);
   };
 
@@ -20,10 +27,17 @@ const App = () => {
     }
     return (
       <li key={move}>
-        <button className="game-info-button">{description}</button>
+        <button className="game-info-button" onClick={() => jumpTo(move)}>
+          {description}
+        </button>
       </li>
     );
   });
+
+  const jumpTo = (move) => {
+    setCurrentMove(move);
+    setIsXNext(move % 2 === 0);
+  };
 
   return (
     <div className="app">
