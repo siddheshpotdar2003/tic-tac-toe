@@ -1,5 +1,6 @@
 import checkWinner from "../utils/checkWinner";
 import Square from "./Square";
+import Confetti from "react-confetti";
 
 const Board = ({ isXNext, squares, onPlay }) => {
   const handleClick = (i) => {
@@ -24,6 +25,7 @@ const Board = ({ isXNext, squares, onPlay }) => {
 
   return (
     <>
+      {winner && <Confetti />}
       <div className="status">{status}</div>
       {/* <div className="board">
         <Square value={squares[0]} onClick={() => handleClick(0)} />
