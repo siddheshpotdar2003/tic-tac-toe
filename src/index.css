@@ -60,6 +60,13 @@ body {
   cursor: pointer;
   background-color: rgb(121, 48, 239);
   color: white;
+  transition: 0.3s ease;
+}
+.game-info-button:disabled {
+  background-color: rgb(121, 48, 239); /* faded grey background */
+  color: #ccc; /* faded text color */
+  cursor: not-allowed; /* “stop” cursor */
+  opacity: 0.6; /* slight transparency */
 }
 
 .board {

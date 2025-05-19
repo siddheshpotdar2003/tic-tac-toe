@@ -7,9 +7,9 @@ const App = () => {
   const currentSquares = history[currentMove];
   const isXNext = currentMove % 2 === 0;
 
-  console.log("current move: ", currentMove);
-  console.log("history: ", history);
-  console.log("current squaers: ", currentSquares);
+  // console.log("current move: ", currentMove);
+  // console.log("history: ", history);
+  // console.log("current squaers: ", currentSquares);
 
   const handlePlay = (nextSquares) => {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
@@ -24,9 +24,14 @@ const App = () => {
     } else {
       description = "Go to game start";
     }
+    console.log(move, currentMove);
     return (
       <li key={move}>
-        <button className="game-info-button" onClick={() => jumpTo(move)}>
+        <button
+          className="game-info-button"
+          disabled={move === currentMove}
+          onClick={() => jumpTo(move)}
+        >
           {description}
         </button>
       </li>
