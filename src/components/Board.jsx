@@ -10,11 +10,12 @@ const Board = ({ isXNext, squares, onPlay }) => {
   };
 
   const winner = checkWinner(squares);
+  const winningLine = winner?.line || [];
   const isDraw = !winner && squares.every((square) => square !== null);
 
   let status;
   if (winner) {
-    status = "💥Winner: " + winner + " 🎉";
+    status = "💥Winner: " + winner.winner + " 🎉";
   } else if (isDraw) {
     status = "Draw ❌";
   } else {
@@ -24,7 +25,7 @@ const Board = ({ isXNext, squares, onPlay }) => {
   return (
     <>
       <div className="status">{status}</div>
-      <div className="board">
+      {/* <div className="board">
         <Square value={squares[0]} onClick={() => handleClick(0)} />
         <Square value={squares[1]} onClick={() => handleClick(1)} />
         <Square value={squares[2]} onClick={() => handleClick(2)} />
@@ -34,6 +35,19 @@ const Board = ({ isXNext, squares, onPlay }) => {
         <Square value={squares[6]} onClick={() => handleClick(6)} />
         <Square value={squares[7]} onClick={() => handleClick(7)} />
         <Square value={squares[8]} onClick={() => handleClick(8)} />
+      </div> */}
+      <div className="board">
+        {Array.from({ length: 9 }).map((_, i) => {
+          const isWinning = winningLine.includes(i);
+          return (
+            <Square
+              key={i}
+              value={squares[i]}
+              onClick={() => handleClick(i)}
+              isWinning={isWinning}
+            />
+          );
+        })}
       </div>
     </>
   );
